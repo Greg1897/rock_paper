@@ -1,11 +1,11 @@
 choices = ["rock","paper","scissors"]
 let round
-let endResult
+let roundResult
 let playerScore = 0;
 let compScore = 0;
 let playerRoundWins = 0;
 let compRoundWins = 0;
-let roundResult
+let fiveRoundResult
 
 function game(){
     playerScore = 0;
@@ -14,7 +14,7 @@ function game(){
         playRound(i)
         
     }
-    declareWinner();
+    declareRoundWinner();
     countRoundWins();           
 }
 
@@ -73,9 +73,9 @@ function logRound(playerSelection,computerSelection,winner,round,playerScore,com
     console.log("Score:",playerScore,compScore);
     console.log("----------------------------")
 }
-function declareWinner() {
-    endResult = showWinner(playerScore,compScore);
-    console.log(endResult);
+function declareRoundWinner() {
+    roundResult = showWinner(playerScore,compScore);
+    console.log(roundResult);
 }
 function showWinner (result1,result2) {
     result1;
@@ -98,12 +98,12 @@ function showWinner (result1,result2) {
 }
 
 function countRoundWins () {
-    if (roundResult === "player")  {
+    if (fiveRoundResult === "player")  {
         playerRoundWins++
         console.log("Player Wins:", playerRoundWins,"Computer wins:",compRoundWins)
         console.log("----------------------------")
     }
-    else if( roundResult === "computer") {
+    else if( fiveRoundResult === "computer") {
         compRoundWins++
         console.log("Player Wins:", playerRoundWins,"Computer wins:",compRoundWins)
         console.log("----------------------------")
