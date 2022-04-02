@@ -1,30 +1,28 @@
 choices = ["rock","paper","scissors"]
+let round
 let endResult
 let playerScore
 let compScore
-game()
+
 function game(){
     playerScore =0;
     compScore = 0;
-    for (i = 0; i < 5; i++) {
-        playRound()
+    for (i = 1; i < 6; i++) {
+        playRound(i)
         
     }
-    endResult = showWinner(playerScore,compScore);
-    console.log("Game Result:",endResult); 
-         
+    declareWinner();           
 }
 
 
-function playRound() {
+function playRound(round) {
+    round
     playerScore == 0;
     compScore == 0;
     playerSelection = playerChoice();
-    console.log("Player: ",playerSelection);
     computerSelection = computerChoice();
-    console.log("Computer:",computerSelection);
-    winner = checkWinner(playerSelection,computerSelection);
-    console.log("Winner:",winner)
+    winner = checkRoundWinner(playerSelection,computerSelection);
+    logRound(playerSelection,computerSelection,winner,round,playerScore,compScore)
     
 
 }
@@ -47,7 +45,7 @@ function playerChoice() {
     return input
 }
 
-function checkWinner(choicePlayer,choiceComputer) {
+function checkRoundWinner(choicePlayer,choiceComputer) {
     if (choicePlayer === choiceComputer) {
         return "tie";
     }
@@ -77,4 +75,16 @@ function showWinner (result1,result2) {
         
     }
 
+}
+function logRound(playerSelection,computerSelection,winner,round,playerScore,compScore) {
+    console.log("Round:",round)
+    console.log("Player:",playerSelection);
+    console.log("Computer:",computerSelection);
+    console.log("Winner:",winner);
+    console.log("Score:",playerScore,compScore);
+    console.log("----------------------------")
+}
+function declareWinner() {
+    endResult = showWinner(playerScore,compScore);
+    console.log(endResult)
 }
