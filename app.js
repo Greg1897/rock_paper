@@ -1,17 +1,21 @@
 choices = ["rock","paper","scissors"]
 let round
 let endResult
-let playerScore
-let compScore
+let playerScore = 0;
+let compScore = 0;
+let playerRoundWins = 0;
+let compRoundWins = 0;
+let roundResult
 
 function game(){
-    playerScore =0;
+    playerScore = 0;
     compScore = 0;
     for (i = 1; i < 6; i++) {
         playRound(i)
         
     }
-    declareWinner();           
+    declareWinner();
+    countRoundWins();           
 }
 
 
@@ -22,8 +26,7 @@ function playRound(round) {
     playerSelection = playerChoice();
     computerSelection = computerChoice();
     winner = checkRoundWinner(playerSelection,computerSelection);
-    logRound(playerSelection,computerSelection,winner,round,playerScore,compScore)
-    
+    logRound(playerSelection,computerSelection,winner,round,playerScore,compScore);
 
 }
 
@@ -62,20 +65,6 @@ function checkRoundWinner(choicePlayer,choiceComputer) {
     }
 }
 
-function showWinner (result1,result2) {
-     result1;
-     result2;
-    
-    if (result1> result2) {
-        return  `You win ${result1} to ${result2} !!!`;
-        
-    }
-    else if (result2 > result1) {
-        return `You lose ${result2} to ${result1} .`
-        
-    }
-
-}
 function logRound(playerSelection,computerSelection,winner,round,playerScore,compScore) {
     console.log("Round:",round)
     console.log("Player:",playerSelection);
@@ -86,5 +75,42 @@ function logRound(playerSelection,computerSelection,winner,round,playerScore,com
 }
 function declareWinner() {
     endResult = showWinner(playerScore,compScore);
-    console.log(endResult)
+    console.log(endResult);
+}
+function showWinner (result1,result2) {
+    result1;
+    result2;
+   
+   if (result1> result2) {
+       roundResult = "player";
+       return`You win ${result1} to ${result2}.`;  
+       
+   }
+   else if (result2 > result1) {
+       roundResult = "computer";
+       
+       return `You lose ${result2} to ${result1} .`
+       
+   }
+   else {
+       return `It's a tie ${result1} to ${result2}.`
+   }
+}
+
+function countRoundWins () {
+    if (roundResult === "player")  {
+        playerRoundWins++
+        console.log("Player Wins:", playerRoundWins,"Computer wins:",compRoundWins)
+        console.log("----------------------------")
+    }
+    else if( roundResult === "computer") {
+        compRoundWins++
+        console.log("Player Wins:", playerRoundWins,"Computer wins:",compRoundWins)
+        console.log("----------------------------")
+    }
+    else {
+        console.log("Player Wins:", playerRoundWins,"Computer wins:",compRoundWins)
+        console.log("----------------------------")
+    }
+
 }
